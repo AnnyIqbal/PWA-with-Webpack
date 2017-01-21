@@ -5,7 +5,6 @@ var cacheName = 'helloWorld';
 var filesToCache = [
   '/',
   '/index.html',
-  '/styles.css',
 ];
 
 self.addEventListener('install', function(e) {
