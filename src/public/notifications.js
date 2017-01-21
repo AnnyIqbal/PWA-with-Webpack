@@ -56,7 +56,7 @@
         toast('Subscribed successfully.');
         console.info('Push notification subscribed.');
         console.log(subscription);
-        //saveSubscriptionID(subscription);
+        saveSubscriptionID(subscription);
         changePushStatus(true);
       })
       .catch(function (error) {
@@ -85,7 +85,7 @@
             toast('Unsubscribed successfully.');
             console.info('Push notification unsubscribed.');
             console.log(subscription);
-            //deleteSubscriptionID(subscription);
+            deleteSubscriptionID(subscription);
             changePushStatus(false);
           })
           .catch(function (error) {
@@ -122,6 +122,33 @@
       subscribePush();
     }
   });
+
+  function saveSubscriptionID(subscription) {
+    var subscription_id = subscription.endpoint.split('gcm/send/')[1];
+
+    console.log("Subscription ID", subscription_id);
+
+    fetch('http://localhost:3333/api/users', {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ user_id : subscription_id })
+    });
+  }
+
+  function deleteSubscriptionID(subscription) {
+    var subscription_id = subscription.endpoint.split('gcm/send/')[1];
+
+    fetch('http://localhost:3333/api/user/' + subscription_id, {
+      method: 'delete',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    });
+  }
 
   isPushSupported(); //Check for push notification support
 })(window);
