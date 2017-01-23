@@ -3,7 +3,7 @@
 
   //Push notification button
   var fabPushElement = document.querySelector('.fab__push');
-  var fabPushImgElement = document.querySelector('.fab__image');
+  // var fabPushImgElement = document.querySelector('.fab__image');
 
   //To check `push notification` is supported or not
   function isPushSupported() {
@@ -53,7 +53,7 @@
         userVisibleOnly: true //Always show notification when received
       })
       .then(function (subscription) {
-        toast('Subscribed successfully.');
+        // toast('Subscribed successfully.');
         console.info('Push notification subscribed.');
         console.log(subscription);
         saveSubscriptionID(subscription);
@@ -104,11 +104,11 @@
     fabPushElement.checked = status;
     if (status) {
       fabPushElement.classList.add('active');
-      fabPushImgElement.src = '../images/push-on.png';
+      // fabPushImgElement.src = '../images/push-on.png';
     }
     else {
      fabPushElement.classList.remove('active');
-     fabPushImgElement.src = '../images/push-off.png';
+    //  fabPushImgElement.src = '../images/push-off.png';
     }
   }
 
